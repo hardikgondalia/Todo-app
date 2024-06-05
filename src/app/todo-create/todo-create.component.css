@@ -1,0 +1,28 @@
+.create-container {
+  text-align: center;
+
+  .task-form {
+    margin-bottom: 10px;
+  }
+
+  .is-invalid{
+    border: 1px solid red;
+  }
+  #validation-text{
+    color:red;
+  }
+
+
+  button {
+    background-color: cadetblue;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    height: 30px;
+  }
+  button:disabled{
+   color: cadetblue;
+   background-color: white;
+  }
+}

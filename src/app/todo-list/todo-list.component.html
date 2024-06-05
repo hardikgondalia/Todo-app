@@ -1,0 +1,42 @@
+<div *ngIf="isLoading">
+  <img src="../../assets/gif/Pendulum.gif">
+</div>
+
+<div class="list-container" *ngIf="!isLoading">
+  <h1>My Todo List</h1>
+  <div>
+    <div>
+      <select (change)="onChangeStatus($event)">
+        <option value="" [disabled]="true">Select Status</option>
+        <option *ngFor="let item of status" [value]="item">{{item}}</option>
+      </select>
+    </div><br><br>
+
+    <div>
+    <table *ngIf="taskData?.length !== 0">
+      <thead>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of taskData; let i = index;">
+          <td>{{item.title}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.status}}</td>
+          <td><button (click)="editTask(item)">Edit</button>&nbsp; <button (click)="deleteTask(i)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <br>
+  <div *ngIf="taskData?.length === 0">
+    <h2>There is no task / note available</h2>
+  </div>
+  <div>
+    <button (click)="createTask()">Create Task/Note</button>
+  </div>
+
+</div>
