@@ -5,17 +5,17 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: TodoCreateComponent
   },
   {
     path: 'todo-list',
-    component:TodoListComponent
+    component: TodoListComponent
   },
   {
-    path:'',
-    redirectTo:'',
-    pathMatch:'full'
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ];
 

@@ -8,18 +8,23 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class TodoService {
 
   public notify = new BehaviorSubject<any>('');
-
   notifyObservable$ = this.notify.asObservable();
-
-
   constructor(private http: HttpClient) { }
 
-
+  /**
+   * method to show loader across application
+   * @param data boolean
+   */
   public notifyOther(data: any) {
     if (data) {
       this.notify.next(data);
     }
   }
+
+  /**
+   * POST call to create/update Todo
+   * @param data boolean
+   */
   postAddTask(body: any): Observable<any> {
     return this.http.post('http://todo.truppler.com/todo/CreateUpdateTodo', body)
   }

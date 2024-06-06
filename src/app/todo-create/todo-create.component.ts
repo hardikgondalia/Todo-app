@@ -19,7 +19,7 @@ export class TodoCreateComponent implements OnInit {
   public isSubmitted: boolean = false;
   public id: any;
 
-  constructor(private router: Router, private todoService: TodoService, private route: ActivatedRoute) {
+  constructor(private router: Router, private todoService: TodoService) {
     this.createTaskForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl(''),
@@ -67,14 +67,11 @@ export class TodoCreateComponent implements OnInit {
         else {
           this.updateTask = false;
         }
-
       })
     }
-
-
   }
 
-  submit() {
+  submitTodo() {
     this.isSubmitted = true;
     if (this.createTaskForm.valid) {
 
