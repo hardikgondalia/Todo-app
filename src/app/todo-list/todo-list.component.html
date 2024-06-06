@@ -2,41 +2,49 @@
   <img src="../../assets/gif/Pendulum.gif">
 </div>
 
-<div class="list-container" *ngIf="!isLoading">
-  <h1>My Todo List</h1>
-  <div>
-    <div>
-      <select (change)="onChangeStatus($event)">
+<div class="list-container d-flex justify-content-center align-items-center" *ngIf="!isLoading">
+  <div class="list-detail d-flex flex-column">
+    <h1>My Todo List</h1>
+
+    <div class="text-center">
+      <select (change)="onChangeStatus($event)" class="select-status">
         <option value="" [disabled]="true">Select Status</option>
         <option *ngFor="let item of status" [value]="item">{{item}}</option>
       </select>
-    </div><br><br>
+    </div>
+
+    <div class="todo-list">
+      <table class="table" *ngIf="taskData?.length !== 0">
+        <thead style="background-color: #0000000f;">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of taskData; let i = index;">
+            <th scope="row">{{item.title}}</th>
+            <td>{{item.description}}</td>
+            <td>{{item.status}}</td>
+            <td class="d-flex">
+              <button (click)="editTask(item)" class="edit-button mr-2 border-0">Edit</button>
+              <button (click)="deleteTask(i)" class="edit-button d-flex align-items-center border-0">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="taskData?.length === 0">
+      <h2>There is no task / note available</h2>
+    </div>
 
     <div>
-    <table *ngIf="taskData?.length !== 0">
-      <thead>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Action</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of taskData; let i = index;">
-          <td>{{item.title}}</td>
-          <td>{{item.description}}</td>
-          <td>{{item.status}}</td>
-          <td><button (click)="editTask(item)">Edit</button>&nbsp; <button (click)="deleteTask(i)">Delete</button></td>
-        </tr>
-      </tbody>
-    </table>
+      <button (click)="createTask()" class="creat-button border-0">Create Task/Note</button>
     </div>
-  </div>
-  <br>
-  <div *ngIf="taskData?.length === 0">
-    <h2>There is no task / note available</h2>
-  </div>
-  <div>
-    <button (click)="createTask()">Create Task/Note</button>
+
   </div>
 
 </div>
