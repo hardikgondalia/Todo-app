@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { TodoService } from '../todo.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -10,21 +12,49 @@ import Swal from 'sweetalert2';
 export class TodoListComponent implements OnInit {
 
   public taskData: any = [];
-  public status: any[] = ['All', 'To Do', 'In Progress', 'Done']
-  public isLoading:boolean = false;
+  public status: any[] = [
+    {
+      id: 0,
+      value: 'To Do'
+    },
+    {
+      id: 1,
+      value: 'In Progress'
+    },
+    {
+      id: 2,
+      value: 'Done'
+    }];
 
-  constructor(private router: Router) { }
+  public isLoading: boolean = false;
+  public message: any
+
+  constructor(private router: Router, private todoService: TodoService) { }
 
   ngOnInit(): void {
     this.getTaskData()
-    }
+    localStorage.removeItem('TodoId')
+
+    this.todoService.notifyObservable$.subscribe(res => {
+      if (res.refresh) {
+        this.todoService.getAllTasks().subscribe((res: any) => {
+          this.taskData = res.responseData
+        })
+      }
+    })
+
+  }
 
   getTaskData() {
-    if (localStorage.getItem('tasks')) {
-      this.taskData = JSON.parse(localStorage.getItem('tasks') || '')
-    }
+    this.isLoading = true;
+    this.todoService.getAllTasks().subscribe((res: any) => {
+      if(res.isSuccess){
+        this.taskData = res.responseData
+        this.isLoading = false
+      }
+     })
 
-}
+  }
 
   createTask() {
     this.router.navigate(['/'])
@@ -32,22 +62,30 @@ export class TodoListComponent implements OnInit {
 
   onChangeStatus(event: any) {
     let temp = event.target.value
-    if (temp === 'All') {
-      this.getTaskData()
-    }
-    else {
+    if(temp === 'All'){
       this.getTaskData();
-      this.taskData = this.taskData.filter((i: any) => i?.status == temp.toString())
     }
+    else{
+      let status = Number(temp)
+      this.todoService.getAllTasks().subscribe((res: any) => {
+        this.taskData = res.responseData
+        this.taskData = this.taskData?.filter((i:any) =>i.status === status)
 
+      })
+
+    }
   }
 
-  editTask(item: any) {
-    localStorage.setItem('editItem', JSON.stringify(item))
+  editTask(id: any) {
+    let body = {
+      todoId: id
+    }
+    localStorage.setItem('TodoId', JSON.stringify(body))
     this.router.navigate(['/'])
   }
 
-  deleteTask(i: any) {
+  deleteTask(id: any) {
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -58,14 +96,10 @@ export class TodoListComponent implements OnInit {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.taskData.splice(i, 1);
+        this.todoService.deleteTaskById(id).subscribe((res: any) => {
+          this.getTaskData();
+        })
 
-        if(this.taskData?.length === 0){
-          localStorage.removeItem('tasks')
-        }
-        else{
-          localStorage.setItem('tasks', JSON.stringify(this.taskData))
-        }
         Swal.fire({
           title: "Deleted!",
           text: "Your task has been deleted.",

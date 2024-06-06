@@ -21,7 +21,7 @@
       <div>
         <select formControlName="status" class="select-status">
           <option value="" [disabled]="true">Select Status</option>
-          <option *ngFor="let item of statusList" [value]="item">{{item}}</option>
+          <option *ngFor="let item of statusList" [value]="item.id">{{item.value}}</option>
         </select>
       </div>
 
@@ -36,15 +36,41 @@
 
 </div>
 
-<div class="create-container" *ngIf="updateTask">
-  <h1>Update Task</h1>
-  <form [formGroup]="createTaskForm" class="task-form">
-    <input type="text" placeholder="Enter Title" formControlName="title">&nbsp;
-    <textarea type="text" placeholder="Enter Description " formControlName="description"></textarea>&nbsp;
-    <select formControlName="status">
-      <option value="" [disabled]="true">Select Status</option>
-      <option *ngFor="let item of statusList" [value]="item">{{item}}</option>
-    </select>
-  </form>
-  <button (click)="submit()">Submit</button>
+
+
+<div class="create-container d-flex justify-content-center align-items-center" *ngIf="updateTask">
+  <div class="task-creat-section bg-light overflow-hidden d-flex flex-column justify-content-start align-items-start">
+    <h1>Update Task</h1>
+    <form [formGroup]="createTaskForm" class="task-form d-flex flex-column w-100">
+      <div>
+        <span class="label-input d-block">Your Title</span>
+        <input class="title-input w-100" type="text" placeholder="Enter Title" name="title" formControlName="title"
+          [ngClass]="{ 'is-invalid': isSubmitted && title.errors }" />
+        <div *ngIf="isSubmitted && title.errors" class="invalid-feedback">
+          <div *ngIf="title.errors.required" id="validation-text">Title is required</div>
+        </div>
+      </div>
+
+      <div>
+        <span class="label-input d-block">Your Description</span>
+        <textarea class="textarea-input w-100" type="text" placeholder="Enter Description" rows="4"
+          formControlName="description"></textarea>
+      </div>
+
+      <div>
+        <select formControlName="status" class="select-status">
+          <option value="" [disabled]="true">Select Status</option>
+          <option *ngFor="let item of statusList" [value]="item.id">{{item.value}}</option>
+        </select>
+      </div>
+
+    </form>
+
+    <div>
+      <button type="submit" (click)="submit()"
+        class="submit-button d-flex justify-content-center align-items-center border-0">Submit</button>
+    </div>
+
+  </div>
+
 </div>
