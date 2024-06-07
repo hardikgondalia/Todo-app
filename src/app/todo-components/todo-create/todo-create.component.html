@@ -7,10 +7,10 @@
       <div>
         <span class="label-input d-block">Your Title</span>
         <input class="title-input w-100" type="text" placeholder="Enter Title" name="title" formControlName="title"
-          [ngClass]="{ 'is-invalid': isSubmitted  || createTaskForm.controls['title'].invalid &&  (  createTaskForm.controls['title'].dirty || createTaskForm.controls['title'].touched )}" />
+          [ngClass]="{ 'is-invalid': (title?.dirty|| title?.touched || isSubmitted) && title?.errors }" />
         <div
-          *ngIf="createTaskForm.controls['title'].invalid && (createTaskForm.controls['title'].dirty || createTaskForm.controls['title'].touched || isSubmitted) ">
-          <div *ngIf="createTaskForm.controls['title'].errors.required" style="color:red">
+          *ngIf="title?.invalid && (title?.dirty || title?.touched || isSubmitted) ">
+          <div *ngIf="title?.errors?.required" style="color:red">
             Please enter title
           </div>
         </div>

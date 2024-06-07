@@ -5,14 +5,27 @@
     <form [formGroup]="loginForm" class="login-form d-flex flex-column w-100">
       <div>
         <span class="label-input d-block">Email ID</span>
-        <input class="input w-100" type="email" placeholder="Enter Email"
-        formControlName="email">
+        <input class="input w-100" type="email" placeholder="Enter Email" formControlName="email"
+          [ngClass]="{ 'is-invalid': (email?.dirty|| email?.touched || isLoggedIn) && email?.errors }" />
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched || isLoggedIn) ">
+          <div *ngIf="email?.errors?.required" style="color:red">
+            Please enter email
+          </div>
+          <div *ngIf="email?.errors?.pattern" style="color:red">
+            Please enter valid email
+          </div>
+        </div>
       </div>
 
       <div>
         <span class="label-input d-block">Password</span>
-        <input class="input w-100" type="password" placeholder="Enter Password"
-          formControlName="password">
+        <input class="input w-100" type="password" placeholder="Enter Password" formControlName="password"
+          [ngClass]="{ 'is-invalid': (password?.dirty|| password?.touched || isLoggedIn) && password?.errors }" />
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched || isLoggedIn) ">
+          <div *ngIf="password?.errors?.required" style="color:red">
+            Please enter password
+          </div>
+        </div>
       </div>
 
     </form>

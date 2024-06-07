@@ -47,7 +47,7 @@ export class TodoCreateComponent implements OnInit {
   }
 
   get title() {
-    return this.createTaskForm.get('title')!;
+    return this.createTaskForm.get('title');
   }
 
   goToTodoList() {
