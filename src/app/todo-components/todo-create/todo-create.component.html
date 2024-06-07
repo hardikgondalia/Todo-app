@@ -1,0 +1,43 @@
+<div class="create-container d-flex justify-content-center align-items-center">
+  <div class="task-creat-section bg-light overflow-hidden d-flex flex-column justify-content-start align-items-start">
+
+    <h1 *ngIf="!updateTask">Create Task</h1>
+    <h1 *ngIf="updateTask">Update Task</h1>
+    <form [formGroup]="createTaskForm" class="task-form d-flex flex-column w-100">
+      <div>
+        <span class="label-input d-block">Your Title</span>
+        <input class="title-input w-100" type="text" placeholder="Enter Title" name="title" formControlName="title"
+          [ngClass]="{ 'is-invalid': isSubmitted  || createTaskForm.controls['title'].invalid &&  (  createTaskForm.controls['title'].dirty || createTaskForm.controls['title'].touched )}" />
+        <div
+          *ngIf="createTaskForm.controls['title'].invalid && (createTaskForm.controls['title'].dirty || createTaskForm.controls['title'].touched || isSubmitted) ">
+          <div *ngIf="createTaskForm.controls['title'].errors.required" style="color:red">
+            Please enter title
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="label-input d-block">Your Description</span>
+        <textarea class="textarea-input w-100" type="text" placeholder="Enter Description" rows="4"
+          formControlName="description"></textarea>
+      </div>
+
+      <div>
+        <select formControlName="status" class="select-status">
+          <option value="" [disabled]="true">Select Status</option>
+          <option *ngFor="let item of statusList let i = index" [value]="i">{{item}}</option>
+        </select>
+      </div>
+
+    </form>
+
+    <div>
+      <button type="submit" (click)="submitTodo()"
+        class="submit-button d-flex justify-content-center align-items-center border-0">Submit</button>
+        <button type="submit" (click)="goToTodoList()">Check Tasks</button>
+    </div>
+
+
+  </div>
+
+</div>

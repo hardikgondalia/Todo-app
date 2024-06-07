@@ -1,0 +1,94 @@
+.login-container {
+  height: 100vh;
+  background-color: #e6e6e6;
+}
+
+.login-section {
+  width: 100%;
+  max-width: 600px;
+  height: 80%;
+  padding: 50px 75px;
+  gap: 40px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+
+.login-form {
+  gap: 20px;
+}
+
+.label-input {
+  font-size: 15px;
+  color: #999;
+  letter-spacing: 1px;
+  padding-bottom: 5px;
+}
+
+.title-input,
+.input {
+  background-color: transparent;
+  border: 2px solid #eeeeee;
+  border-radius: 4px;
+  padding: 5px 0px 5px 10px;
+  font-size: 18px;
+  color: #555;
+  letter-spacing: 0.5px;
+  outline: none;
+}
+
+.title-input::placeholder {
+  font-size: 18px;
+  color: #555;
+  font-weight: 500;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.input::placeholder {
+  font-size: 18px;
+  color: #555;
+  font-weight: 500;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.select-status {
+  border: 2px solid #eeeeee;
+  outline: none;
+  padding: 5px 15px;
+  border-radius: 4px;
+}
+
+.submit-button {
+  min-width: 160px;
+  height: 50px;
+  padding: 0 20px;
+  font-size: 16px;
+  background-color: #ff4b5a;
+  color: #fff;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px 0 rgba(255, 75, 90, .5);
+  -moz-box-shadow: 0 10px 30px 0 rgba(255, 75, 90, .5);
+  transition: 0.5s;
+}
+
+.submit-button:hover {
+  background-color: #333;
+  box-shadow: 0 10px 30px 0 rgba(51, 51, 51, .5);
+  -moz-box-shadow: 0 10px 30px 0 rgba(51, 51, 51, .5);
+}
+
+.is-invalid {
+  border: 1px solid red;
+}
+
+
+button:disabled {
+  color: cadetblue;
+  background-color: white;
+}
+
+@media only screen and (max-width: 576px) {
+  .task-login-section {
+    width: 90%;
+    padding: 25px 35px;
+  }
+}

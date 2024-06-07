@@ -1,0 +1,27 @@
+<div class="login-container d-flex justify-content-center align-items-center">
+  <div class="login-section bg-light overflow-hidden d-flex flex-column justify-content-start align-items-start">
+
+
+    <form [formGroup]="loginForm" class="login-form d-flex flex-column w-100">
+      <div>
+        <span class="label-input d-block">Email ID</span>
+        <input class="input w-100" type="email" placeholder="Enter Email"
+        formControlName="email">
+      </div>
+
+      <div>
+        <span class="label-input d-block">Password</span>
+        <input class="input w-100" type="password" placeholder="Enter Password"
+          formControlName="password">
+      </div>
+
+    </form>
+
+    <div>
+      <button type="submit" (click)="login()"
+        class="submit-button d-flex justify-content-center align-items-center border-0">Login</button>
+    </div>
+
+  </div>
+
+</div>

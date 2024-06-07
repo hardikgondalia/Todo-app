@@ -1,0 +1,54 @@
+<div class="list-container d-flex justify-content-center align-items-center" *ngIf="!isLoading">
+  <div class="list-detail d-flex flex-column">
+    <h1 class="text-center">My Todo List</h1>
+
+    <div class="text-center">
+      <input type="text" (input)="inputValue()" [(ngModel)]="searchString" placeholder="Search Task">
+    </div>
+
+    <div class="text-center">
+      <select (change)="onChangeStatus($event)" class="select-status">
+        <option value="" [disabled]="true">Select Status</option>
+        <option value="All">All</option>
+        <option *ngFor="let item of status; let i = index" [value]="i">{{item}}</option>
+      </select>
+    </div>
+
+    <div class="todo-list" *ngIf="taskData?.length !== 0">
+      <table class="table" >
+        <thead style="background-color: #0000000f;">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of taskData;">
+            <th scope="row">{{item.todoTitle}}</th>
+            <td>{{item.description}}</td>
+            <td *ngIf="item.status === 0">To Do</td>
+            <td *ngIf="item.status === 1">In Progress</td>
+            <td *ngIf="item.status === 2">Done</td>
+            <td class="d-flex">
+              <button (click)="editTask(item.todoId)" class="edit-button mr-2 border-0">Edit</button>
+              <button (click)="deleteTask(item.todoId)" class="edit-button d-flex align-items-center border-0">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="taskData?.length === 0"  class="text-center">
+      <h2>There is no task available</h2>
+    </div>
+
+    <div>
+      <button (click)="createTask()" class="creat-button border-0">Create Task</button>
+    </div>
+
+
+  </div>
+
+</div>

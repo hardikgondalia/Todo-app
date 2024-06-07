@@ -1,17 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TodoCreateComponent } from './todo-create/todo-create.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: TodoCreateComponent
+    loadChildren: () => import('./todo-components/todo.module').then(m => m.TodoModule)
   },
-  {
-    path: 'todo-list',
-    component: TodoListComponent
-  },
+
   {
     path: '',
     redirectTo: '',
