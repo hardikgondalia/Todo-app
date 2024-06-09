@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-todo-login',
-  templateUrl: './todo-login.component.html',
-  styleUrl: './todo-login.component.scss'
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss'
 })
-export class TodoLoginComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup | any;
   public title: string = '';
