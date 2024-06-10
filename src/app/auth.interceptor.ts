@@ -39,7 +39,6 @@ export class AuthInterceptor implements HttpInterceptor {
             result = JSON.parse(localStorage.getItem('token')|| '');
           } catch (err) {
           }
-          console.log(result)
           return result;
     }
 
