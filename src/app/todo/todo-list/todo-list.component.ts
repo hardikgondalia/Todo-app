@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { TodoService } from '../todo.service';
 import { filter } from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
 
 enum status {
   ToDo = 'To Do',
@@ -25,11 +26,10 @@ export class TodoListComponent implements OnInit {
   public isLoading: boolean = false;
   public message: any
 
-  constructor(private router: Router, private todoService: TodoService) { }
+  constructor(private router: Router, private todoService: TodoService, private authService:AuthService) { }
 
   ngOnInit(): void {
     this.getTaskData()
-    localStorage.removeItem('TodoId')
 
     this.todoService.notifyObservable$.subscribe(res => {
       if (res.refresh) {
@@ -43,12 +43,15 @@ export class TodoListComponent implements OnInit {
 
   getTaskData() {
     this.isLoading = true;
-    this.todoService.getAllTasks().subscribe((res: any) => {
-      if (res.isSuccess) {
-        this.taskData = res.responseData
-        this.isLoading = false
-      }
-    })
+    if(this.authService.isLoggedIn$){
+      this.todoService.getAllTasks().subscribe((res: any) => {
+        if (res.isSuccess) {
+          this.taskData = res.responseData
+          this.isLoading = false
+        }
+      })
+
+    }
 
   }
 

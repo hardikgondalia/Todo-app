@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService:AuthService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       password: new FormControl('', [Validators.required])
@@ -56,25 +57,15 @@ export class LoginComponent implements OnInit {
     this.isLoggedIn = true;
 
     if(this.loginForm.valid){
-      let body = {
-        email: this.loginForm.get('email')?.value,
-        password: this.loginForm.get('password')?.value
-      }
 
-      let temp = this.loginDummyData.filter((i:any) => i.email == body.email && i.password == body.password)
-      if(temp?.length > 0){
-        this.router.navigate(['/list'])
-      }
-      else{
-        Swal.fire({
-          icon: "error",
-          title: "Incorrect Email ID Or Password",
-          text: "Please Enter Correct Details",
-        });
-        this.loginForm.reset();
-      }
+      let email = this.loginForm.get('email')?.value;
+      let password = this.loginForm.get('password')?.value
 
-
+      this.authService.login(email,password).subscribe((res:any) => {
+        console.log(res)
+        this.router.navigate(['/todo/list'])
+      })
     }
+
    }
 }

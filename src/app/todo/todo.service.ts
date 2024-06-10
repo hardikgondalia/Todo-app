@@ -40,4 +40,8 @@ export class TodoService {
   deleteTaskById(id: any): Observable<any> {
     return this.http.delete(`http://todo.truppler.com/todo/RemoveTodoItem/${id}`)
   }
+
+  postLogin(email:string, password:string): Observable<any> {
+    return this.http.post('http://todo.truppler.com/todo/Login' , {email, password})
+  }
 }
