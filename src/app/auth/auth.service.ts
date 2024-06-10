@@ -18,8 +18,9 @@ export class AuthService {
   login(email:string, password:string){
     return this.todoService.postLogin(email, password).pipe(
       tap((response:any) => {
-        this._isLoggedIn$.next(true)
-        localStorage.setItem('token', response.responseData)
+        this._isLoggedIn$.next(true);
+        console.log(JSON.stringify(response.responseData))
+        localStorage.setItem('token', JSON.stringify(response.responseData))
       })
     )
   }
