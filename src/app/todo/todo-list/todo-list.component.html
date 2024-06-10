@@ -32,8 +32,10 @@
             <td *ngIf="item.status === 1">In Progress</td>
             <td *ngIf="item.status === 2">Done</td>
             <td class="d-flex">
-              <button (click)="editTask(item.todoId)" class="edit-button mr-2 border-0">Edit</button>
-              <button (click)="deleteTask(item.todoId)" class="edit-button d-flex align-items-center border-0">Delete</button>
+              <i class="bi bi-pencil-square" (click)="editTask(item.todoId)"></i>
+              <i class="bi bi-trash3-fill" (click)="deleteTask(item.todoId)"></i>
+              <!-- <button (click)="editTask(item.todoId)" class="edit-button mr-2 border-0">Edit</button>
+              <button (click)="deleteTask(item.todoId)" class="edit-button d-flex align-items-center border-0">Delete</button> -->
             </td>
           </tr>
         </tbody>
