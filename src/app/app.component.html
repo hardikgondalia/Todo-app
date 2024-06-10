@@ -1,4 +1,9 @@
 <div *ngIf="!showLoader">
+  <nav *ngIf="userLoggedIn">
+    <div>
+      <button (click)="logout()">Logout</button>
+    </div>
+  </nav>
   <router-outlet></router-outlet>
 </div>
 <div *ngIf="showLoader" class="loader">
