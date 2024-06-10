@@ -92,7 +92,7 @@ export class TodoListComponent implements OnInit {
 
   editTask(id: any) {
     let todoId = id
-    this.router.navigate(['/create'], { queryParams: { id: todoId } })
+    this.router.navigate(['/todo/create'], { queryParams: { id: todoId } })
   }
 
   deleteTask(id: any) {
