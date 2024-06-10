@@ -13,31 +13,13 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup | any;
   public title: string = '';
-  public isLoggedIn :boolean = false;
-  public loginDummyData: any[] = [
-    {
-      email: 'abc@gmail.com',
-      password: 'abc@123'
-    },
-    {
-      email: 'xyz@gmail.com',
-      password: 'xyz@456'
-    },
-    {
-      email: 'john@gmail.com',
-      password: 'john@1234'
-    },
-    {
-      email: 'smith@gmail.com',
-      password: 'smith@12345'
-    }
-  ];
+  public isLoggedIn: boolean = false;
 
-  constructor(private router: Router, private authService:AuthService) {
+  constructor(private router: Router, private authService: AuthService) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       password: new FormControl('', [Validators.required])
-    //  password: new FormControl('', [Validators.required,Validators.pattern( "/^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/")])
+      //  password: new FormControl('', [Validators.required,Validators.pattern( "/^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/")])
     })
   }
 
@@ -56,16 +38,27 @@ export class LoginComponent implements OnInit {
   login() {
     this.isLoggedIn = true;
 
-    if(this.loginForm.valid){
+    if (this.loginForm.valid) {
 
       let email = this.loginForm.get('email')?.value;
       let password = this.loginForm.get('password')?.value
 
-      this.authService.login(email,password).subscribe((res:any) => {
-        console.log(res)
-        this.router.navigate(['/todo/list'])
+      this.authService.login(email, password).subscribe((res: any) => {
+        if (res.isSuccess) {
+          this.router.navigate(['/todo/list'])
+        }
+        else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: res.message,
+          });
+          this.loginForm.reset()
+          this.isLoggedIn = false
+        }
+
       })
     }
 
-   }
+  }
 }
