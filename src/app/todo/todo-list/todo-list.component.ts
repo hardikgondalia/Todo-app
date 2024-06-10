@@ -26,7 +26,7 @@ export class TodoListComponent implements OnInit {
   public isLoading: boolean = false;
   public message: any
 
-  constructor(private router: Router, private todoService: TodoService, private authService:AuthService) { }
+  constructor(private router: Router, private todoService: TodoService) { }
 
   ngOnInit(): void {
     this.getTaskData()
@@ -43,7 +43,7 @@ export class TodoListComponent implements OnInit {
 
   getTaskData() {
     this.isLoading = true;
-    if(this.authService.isLoggedIn$){
+
       this.todoService.getAllTasks().subscribe((res: any) => {
         if (res.isSuccess) {
           this.taskData = res.responseData
@@ -51,12 +51,10 @@ export class TodoListComponent implements OnInit {
         }
       })
 
-    }
-
   }
 
   createTask() {
-    this.router.navigate(['/create'])
+    this.router.navigate(['/todo/create'])
   }
 
   inputValue() {

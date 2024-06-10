@@ -51,7 +51,7 @@ export class TodoCreateComponent implements OnInit {
   }
 
   goToTodoList() {
-    this.router.navigate(['/list'])
+    this.router.navigate(['/todo/list'])
   }
 
   getTaskById() {
@@ -111,7 +111,7 @@ export class TodoCreateComponent implements OnInit {
       });
 
 
-      this.router.navigate(['/list'])
+      this.router.navigate(['/todo/list'])
 
     }
   }
