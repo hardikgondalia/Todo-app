@@ -20,7 +20,9 @@ enum status {
 export class TodoListComponent implements OnInit {
 
   public taskData: any = [];
+  public tempTaskData : any = [];
   public searchString: any = '';
+  public searchFilter : any = '';
   public status: any[] = Object.values(status)
 
   public isLoading: boolean = false;
@@ -46,7 +48,8 @@ export class TodoListComponent implements OnInit {
 
       this.todoService.getAllTasks().subscribe((res: any) => {
         if (res.isSuccess) {
-          this.taskData = res.responseData
+          this.taskData = res.responseData;
+          this.tempTaskData = res.responseData;
           this.isLoading = false
         }
       })
@@ -55,6 +58,18 @@ export class TodoListComponent implements OnInit {
 
   createTask() {
     this.router.navigate(['/todo/create'])
+  }
+
+  changeInSearch(){
+    let string = this.searchString;
+    let filter = this.searchFilter;
+    if (filter === 'All') {
+      this.taskData = this.tempTaskData.filter((i: any) => i.todoTitle.toLowerCase().includes(string.toLowerCase()));
+    }
+    else {
+      let status = Number(filter);
+        this.taskData = this.tempTaskData.filter((i: any) => i.status === status && i.todoTitle.toLowerCase().includes(string.toLowerCase()));
+    }
   }
 
   inputValue() {
@@ -76,17 +91,11 @@ export class TodoListComponent implements OnInit {
   onChangeStatus(event: any) {
     let temp = event.target.value
     if (temp === 'All') {
-      this.todoService.getAllTasks().subscribe((res: any) => {
-        this.taskData = res.responseData
-      })
+      this.taskData = this.tempTaskData.filter((i: any) => i.todoTitle.toLowerCase().includes(this.searchString.toLowerCase()));
     }
     else {
-      let status = Number(temp)
-      this.todoService.getAllTasks().subscribe((res: any) => {
-        this.taskData = res.responseData
-        this.taskData = this.taskData?.filter((i: any) => i.status === status)
-      })
-
+      let status = Number(temp);
+        this.taskData = this.tempTaskData.filter((i: any) => i.status === status && i.todoTitle.toLowerCase().includes(this.searchString.toLowerCase()));
     }
   }
 

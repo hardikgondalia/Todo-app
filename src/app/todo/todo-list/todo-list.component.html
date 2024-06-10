@@ -12,14 +12,14 @@
         <div class="text-center  col-6 ">
           <input
             type="text"
-            (input)="inputValue()"
+            (input)="changeInSearch()"
             [(ngModel)]="searchString"
             placeholder="Search Task"
           />
         </div>
 
         <div class="text-center col-6">
-          <select (change)="onChangeStatus($event)" class="select-status w-100">
+          <select (change)="changeInSearch()" [(ngModel)]="searchFilter" class="select-status w-100">
             <option value="" [disabled]="true">Select Status</option>
             <option value="All">All</option>
             <option *ngFor="let item of status; let i = index" [value]="i">

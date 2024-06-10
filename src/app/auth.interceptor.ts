@@ -7,13 +7,22 @@ import { environment } from '../environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+    isRefreshingToken = false;
+    tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>('null');
+    
     constructor(private router: Router) { }
+
+    addToken(request: HttpRequest<any>): HttpRequest<any> {
+        return request.clone();
+    }
 
     private handleAuthError(req: HttpRequest<any>, next: HttpHandler, error: HttpErrorResponse): Observable<any> {
         if (error instanceof HttpErrorResponse) {
             switch ((error as HttpErrorResponse).status) {
                 case 400:
                     return this.handle400Error(error);
+                case 401:
+                    return this.handle401Error(req, next);
                 default:
                     return observableThrowError(error);
             }
@@ -30,6 +39,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 setHeaders: { Authorization: `Bearer ${isToken}` }
             });
         }
+
         return next.handle(req).pipe(catchError(x => this.handleAuthError(req, next, x)));
     }
 
@@ -47,6 +57,16 @@ export class AuthInterceptor implements HttpInterceptor {
             return this.logoutUser();
         }
         return observableThrowError(error);
+    }
+
+    handle401Error(req: HttpRequest<any>, next: HttpHandler) {
+        if (req.url.indexOf('/auth/oauth/token') !== -1) {
+             this.logoutUser();
+        }
+        if (!this.isRefreshingToken) {
+            this.logoutUser();
+        }
+        return this.logoutUser();
     }
 
     logoutUser() {
