@@ -7,10 +7,13 @@
   width: 100%;
   max-width: 600px;
   height: 80%;
-  padding: 50px 75px;
   gap: 40px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+.create-task-title{
+  background-color:#545d92;
+  color:#fff;
 }
 
 .task-form {
@@ -34,6 +37,7 @@
   color: #555;
   letter-spacing: 0.5px;
   outline: none;
+  
 }
 
 .title-input::placeholder {
@@ -55,15 +59,17 @@
 .select-status {
   border: 2px solid #eeeeee;
   outline: none;
-  padding: 5px 15px;
+  padding: 7px 15px;
   border-radius: 4px;
+  width: fit-content;
 }
 
 .task-check-button {
   border: 2px solid #eeeeee;
     outline: none;
-    padding: 5px 15px;
+    padding: 7px 15px;
     border-radius: 4px;
+
     background-color: black;
     color: white;
 }

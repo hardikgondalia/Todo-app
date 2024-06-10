@@ -1,8 +1,11 @@
 <div class="create-container d-flex justify-content-center align-items-center">
   <div class="task-creat-section bg-light overflow-hidden d-flex flex-column justify-content-start align-items-start">
-
+    <div class="w-100">
+    <div class="create-task-title d-flex flex-column align-items-center justify-content-center w-100 py-3">
     <h1 *ngIf="!updateTask">Create Task</h1>
     <h1 *ngIf="updateTask">Update Task</h1>
+    </div>
+    <div class="create-form-box  mx-5 mt-4">
     <form [formGroup]="createTaskForm" class="task-form d-flex flex-column w-100">
       <div>
         <span class="label-input d-block">Your Title</span>
@@ -22,19 +25,25 @@
           formControlName="description"></textarea>
       </div>
 
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between flex-column">
+        <label class="d-block">Status</label>
         <select formControlName="status" class="select-status">
           <option value="" [disabled]="true">Select Status</option>
           <option *ngFor="let item of statusList let i = index" [value]="i">{{item}}</option>
         </select>
-        <button type="submit" (click)="goToTodoList()" class="task-check-button">Check Tasks</button>
+        <!-- <button type="submit" (click)="goToTodoList()" class="task-check-button">Check Tasks</button> -->
       </div>
 
     </form>
-
-    <div>
+    </div>
+</div>
+    <div class="mx-5 d-flex justify-content-between">
+      <button type="submit" (click)="submitTodo()"
+      class="submit-button d-flex justify-content-center align-items-center border-0">Back</button>
       <button type="submit" (click)="submitTodo()"
         class="submit-button d-flex justify-content-center align-items-center border-0">Submit</button>
+       
+        
     </div>
 
 

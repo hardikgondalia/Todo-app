@@ -1,9 +1,11 @@
 <div *ngIf="!showLoader">
-  <nav *ngIf="userLoggedIn">
+  <div class="navigation-bar d-flex justify-content-flex-end align-items-center w-100 px-4">
+  <nav *ngIf="userLoggedIn" class="w-100">
     <div class="d-flex justify-content-end w-100">
-      <button (click)="logout()">Logout</button>
+      <button class="logout-button" (click)="logout()">Logout</button>
     </div>
   </nav>
+  </div>
   <router-outlet></router-outlet>
 </div>
 <div *ngIf="showLoader" class="loader">

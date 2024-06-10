@@ -41,14 +41,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of taskData">
+          <tr *ngFor="let item of taskData" style="background:#fff;">
             <th scope="row">{{ item.todoTitle }}</th>
             <td>{{ item.description }}</td>
             <td *ngIf="item.status === 0">To Do</td>
             <td *ngIf="item.status === 1">In Progress</td>
             <td *ngIf="item.status === 2">Done</td>
-            <td class="d-flex text-center align-items-center justify-content-center">
-             
+            <td class=" text-center">
+             <div class="h-100 d-flex d-flex align-items-center justify-content-center">
               <i
                 class="bi bi-pencil-square mr-2"
                 (click)="editTask(item.todoId)"
@@ -57,6 +57,7 @@
                 class="bi bi-trash3-fill"
                 (click)="deleteTask(item.todoId)"
               ></i>
+              </div>
               <!-- <button (click)="editTask(item.todoId)" class="edit-button mr-2 border-0">Edit</button>
               <button (click)="deleteTask(item.todoId)" class="edit-button d-flex align-items-center border-0">Delete</button> -->
             </td>
