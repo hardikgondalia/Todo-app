@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { APIConstant } from '../constant/api';
 
 @Injectable({
   providedIn: 'root'
@@ -27,22 +28,27 @@ export class TodoService {
    * @param data boolean
    */
   postAddTask(body: any): Observable<any> {
-    return this.http.post(`${environment.BASE_URL}/todo/CreateUpdateTodo`, body)
+    const url = `${APIConstant.postAddTask}`;
+    return this.http.post(url, body)
   }
 
   getAllTasks(): Observable<any> {
-    return this.http.get(`${environment.BASE_URL}/todo/GetTodoList`)
+    const url = `${APIConstant.getAllTasks}`;
+    return this.http.get(url)
   }
 
   getTaskById(id: any): Observable<any> {
-    return this.http.get(`${environment.BASE_URL}/todo/GetTodoDetails/${id}`)
+    const url = `${APIConstant.getTaskById}`;
+    return this.http.get(url.replace('{id}', id))
   }
 
   deleteTaskById(id: any): Observable<any> {
-    return this.http.delete(`${environment.BASE_URL}/todo/RemoveTodoItem/${id}`)
+    const url = `${APIConstant.deleteTaskById}`;
+    return this.http.delete(url.replace('{id}', id))
   }
 
-  postLogin(email:string, password:string): Observable<any> {
-    return this.http.post(`${environment.BASE_URL}/todo/Login` , {email, password})
+  postLogin(email: string, password: string): Observable<any> {
+    const url = `${APIConstant.postLogin}`;
+    return this.http.post(url, { email, password })
   }
 }
