@@ -1,36 +1,43 @@
-<div class="login-container d-flex justify-content-center align-items-center">
-  <div class="login-section bg-light overflow-hidden d-flex flex-column justify-content-start align-items-start">
+<div class="login-container position-reletive d-flex justify-content-center align-items-center">
 
+  <div class="login-section overflow-hidden d-flex justify-content-start align-items-start">
 
-    <form [formGroup]="loginForm" class="login-form d-flex flex-column w-100">
-      <div>
-        <span class="label-input d-block">Email ID</span>
-        <input class="input w-100" type="email" placeholder="Enter Email" formControlName="email"
-          [ngClass]="{ 'is-invalid': (email?.dirty|| email?.touched || isLoggedIn) && email?.errors }" />
-        <div *ngIf="email?.invalid && (email?.dirty || email?.touched || isLoggedIn) ">
-          <div *ngIf="email?.errors?.required" style="color:red">
-            Please enter email
-          </div>
-          <div *ngIf="email?.errors?.pattern" style="color:red">
-            Please enter valid email
+    <div class="login-img-section h-100">
+      <img
+        src="../../../assets/imges/login.svg"
+        alt="" width="100%" height="100%">
+    </div>
+    <div class="dotted-line-section position-relative h-100 d-flex justify-content-center align-items-center">
+      <span class="dotted-line"></span>
+    </div>
+    <div class="login-detail-form">
+      <span class="d-block text-center mb-2 fs-3">Login</span>
+      <form [formGroup]="loginForm" class="login-form d-flex flex-column w-100">
+        <div>
+          <span class="label-input d-block">Email ID</span>
+          <input class="input w-100" type="email" placeholder="Enter Email" formControlName="email"
+            [ngClass]="{ 'is-invalid': (email?.dirty|| email?.touched || isLoggedIn) && email?.errors }" />
+          <div *ngIf="email?.invalid && (email?.dirty || email?.touched || isLoggedIn) ">
+            <div *ngIf="email?.errors?.required" style="color:red">
+              Please enter email
+            </div>
+            <div *ngIf="email?.errors?.pattern" style="color:red">
+              Please enter valid email
+            </div>
           </div>
         </div>
-      </div>
 
-      <div>
-        <span class="label-input d-block">Password</span>
-        <input class="input w-100" type="password" placeholder="Enter Password" formControlName="password"
-          [ngClass]="{ 'is-invalid': (password?.dirty|| password?.touched || isLoggedIn) && password?.errors }" />
-        <div *ngIf="password?.invalid && (password?.dirty || password?.touched || isLoggedIn) ">
-          <div *ngIf="password?.errors?.required" style="color:red">
-            Please enter password
+        <div>
+          <span class="label-input d-block">Password</span>
+          <input class="input w-100" type="password" placeholder="Enter Password" formControlName="password"
+            [ngClass]="{ 'is-invalid': (password?.dirty|| password?.touched || isLoggedIn) && password?.errors }" />
+          <div *ngIf="password?.invalid && (password?.dirty || password?.touched || isLoggedIn) ">
+            <div *ngIf="password?.errors?.required" style="color:red">
+              Please enter password
+            </div>
           </div>
         </div>
-      </div>
-
-    </form>
-
-    <div>
+      </form>
       <button type="submit" (click)="login()"
         class="submit-button d-flex justify-content-center align-items-center border-0">Login</button>
     </div>
