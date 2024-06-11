@@ -1,4 +1,24 @@
+:root {
+    --background-primary-color: #545d92;
+    --background-secondary-color: #e6e6e6;
+    --background-white-color: #fff;
+    --background-light-black-color: #333;
+    --background-light-grey-color: #d9d9d9;
+
+    --font-primary-color: #fff;
+    --font-secondary-color: #999;
+    --font-grey-color: #555;
+    --font-danger-color: #ff4b5a;
+    --font-invalid-color: red;
+
+    --border-primary-color: #fff;
+    --border-secondary-color: #eeeeee;
+    --border-light-color: #bababa;
+
+    --button-disabled-color: cadetblue
+}
+
 /* You can add global styles to this file, and also import other style files */
-*{
+* {
     font-family: "Ubuntu", sans-serif;
 }

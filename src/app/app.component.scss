@@ -1,4 +1,4 @@
-.loader{
+.loader {
     width: 100%;
     height: 100%;
     display: flex;
@@ -7,12 +7,14 @@
     margin-top: 15%;
 
 }
-.navigation-bar{
+
+.navigation-bar {
     height: 70px;
-    background-color:#545d92;
-    .logout-button{
-        border: 2px solid #fff;
-        color: #fff;
+    background-color: var(--background-primary-color);
+
+    .logout-button {
+        border: 2px solid var(--border-primary-color);
+        color: var(--font-primary-color);
         padding: 10px 20px;
         font-size: 16px;
         line-height: 22px;

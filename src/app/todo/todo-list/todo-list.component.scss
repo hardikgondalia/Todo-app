@@ -1,6 +1,6 @@
 .list-container {
   height: 100vh;
-  background-color: #e6e6e6;
+  background-color: var(--background-secondary-color);
 }
 
 .list-detail {
@@ -14,15 +14,15 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
 }
 
-input{
-  border: 2px solid #eeeeee;
+input {
+  border: 2px solid var(--border-secondary-color);
   outline: none;
   padding: 5px 15px;
   border-radius: 4px;
 }
 
 .select-status {
-  border: 2px solid #eeeeee;
+  border: 2px solid var(--border-secondary-color);
   outline: none;
   padding: 7px 15px;
   border-radius: 4px;
@@ -33,11 +33,12 @@ input{
   max-height: 300px;
   overflow-y: auto;
   width: 90%;
-  table{
+
+  table {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
-}
+  }
 
 
 
@@ -46,32 +47,36 @@ input{
   //   display: none;
   // }
 }
+
 .todo-list::-webkit-scrollbar {
   width: 5px;
 }
+
 .todo-list::-webkit-scrollbar-track {
   border-radius: 10px;
 }
+
 .todo-list::-webkit-scrollbar-track-piece {
-  background-color: white;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 1) 25%,
-    rgba(228, 228, 228, 1) 50%,
-    rgba(255, 255, 255, 1) 75%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  background-color: var(--background-white-color);
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 25%,
+      rgba(228, 228, 228, 1) 50%,
+      rgba(255, 255, 255, 1) 75%,
+      rgba(255, 255, 255, 1) 100%);
 }
+
 .todo-list::-webkit-scrollbar-thumb {
-  background-color: #d9d9d9;
+  background-color: var(--background-light-grey-color);
   border-radius: 24px;
   border: unset;
 }
-.table tbody th, td {
+
+.table tbody th,
+td {
   padding: 10px;
   vertical-align: middle;
-  border-bottom: 1px solid #bababa;
+  border-bottom: 1px solid var(--border-light-color);
 }
 
 .creat-button {
@@ -79,8 +84,8 @@ input{
   height: 50px;
   padding: 0 20px;
   font-size: 16px;
-  background-color: #ff4b5a;
-  color: #fff;
+  background-color: var(--font-danger-color);
+  color: var(--font-primary-color);
   border-radius: 8px;
   box-shadow: 0 10px 30px 0 rgba(255, 75, 90, .5);
   -moz-box-shadow: 0 10px 30px 0 rgba(255, 75, 90, .5);
@@ -88,7 +93,7 @@ input{
 }
 
 .creat-button:hover {
-  background-color: #333;
+  background-color: var(--background-light-black-color);
   box-shadow: 0 10px 30px 0 rgba(51, 51, 51, .5);
   -moz-box-shadow: 0 10px 30px 0 rgba(51, 51, 51, .5);
 }
@@ -100,7 +105,7 @@ input{
   color: #3c4043;
   letter-spacing: 1px;
   cursor: pointer;
-  font-family: arial,sans-serif;
+  font-family: arial, sans-serif;
   font-size: 14px;
   height: 36px;
   min-width: 80px;
@@ -125,18 +130,18 @@ input{
 
 /* CSS */
 .delete-button {
-    background-image: linear-gradient(#464d55, #25292e);
-    border-radius: 4px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px;
-    height: 34px;
-    outline: none;
-    overflow: hidden;
-    padding: 5px 15px;
-    text-align: center;
-    transition: all 150ms;
+  background-image: linear-gradient(#464d55, #25292e);
+  border-radius: 4px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  height: 34px;
+  outline: none;
+  overflow: hidden;
+  padding: 5px 15px;
+  text-align: center;
+  transition: all 150ms;
 }
 
 .delete-button:hover {
@@ -151,15 +156,18 @@ input{
 .delete-button:focus {
   box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
 }
-.title-option-box{
+
+.title-option-box {
   position: relative;
 }
-.list-title{
-  background-color:#545d92;
-  color:#fff;
+
+.list-title {
+  background-color: #545d92;
+  color: #fff;
 }
+
 .list-option-card {
-  background-color:#fff;
+  background-color: #fff;
   box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
   position: absolute;
   top: 70px;
@@ -168,15 +176,18 @@ input{
   border-radius: 10px;
   width: 90%;
 }
-.todo-list{
+
+.todo-list {
   margin: 0 auto;
 }
-.todo-table{
+
+.todo-table {
   border-radius: 15px;
   background: #fff;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
 }
+
 @media (max-width: 420px) {
   .delete-button {
     height: 48px;
