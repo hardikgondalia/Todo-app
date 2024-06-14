@@ -1,191 +1,111 @@
 .list-container {
-  height: 100vh;
-  background-color: var(--background-secondary-color);
-}
+  height: calc(100vh - 70px);
 
-.list-detail {
-  width: 100%;
-  max-width: 600px;
-  height: 70%;
-  // padding: 25px;
-  gap: 20px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
-}
-
-input {
-  border: 2px solid var(--border-secondary-color);
-  outline: none;
-  padding: 5px 15px;
-  border-radius: 4px;
-}
-
-.select-status {
-  border: 2px solid var(--border-secondary-color);
-  outline: none;
-  padding: 7px 15px;
-  border-radius: 4px;
-}
-
-.todo-list {
-  min-height: 300px;
-  max-height: 300px;
-  overflow-y: auto;
-  width: 90%;
-
-  table {
-    border-radius: 15px;
+  .list-detail {
+    width: 100%;
+    max-width: 900px;
+    gap: 20px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+
+    .title-option-box {
+      position: relative;
+
+      .list-option-card {
+        background-color: #fff;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1),
+          0 3px 6px rgba(0, 0, 0, 0.05);
+        position: absolute;
+        top: 70px;
+        left: 50%;
+        transform: translateX(-48%);
+        border-radius: 10px;
+        width: 90%;
+
+        input {
+          border: 2px solid var(--border-secondary-color);
+          outline: none;
+          padding: 5px 15px;
+          border-radius: 4px;
+        }
+
+        .select-status {
+          border: 2px solid var(--border-secondary-color);
+          outline: none;
+          padding: 7px 15px;
+          border-radius: 4px;
+        }
+      }
+    }
+
+    .todo-list {
+      min-height: 300px;
+      max-height: 300px;
+      overflow-y: auto;
+      width: 90%;
+      margin: 0 auto;
+
+      table {
+        overflow: hidden;
+
+        tbody th,
+        td {
+          padding: 10px;
+          vertical-align: middle;
+          border-bottom: 1px solid var(--border-light-color);
+        }
+      }
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    // .todo-list::-webkit-scrollbar {
+    //   width: 5px;
+    // }
+
+    // .todo-list::-webkit-scrollbar-track {
+    //   border-radius: 10px;
+    // }
+
+    // .todo-list::-webkit-scrollbar-track-piece {
+    //   background-color: var(--background-white-color);
+    //   background: linear-gradient(
+    //     90deg,
+    //     rgba(255, 255, 255, 1) 0%,
+    //     rgba(255, 255, 255, 1) 25%,
+    //     rgba(228, 228, 228, 1) 50%,
+    //     rgba(255, 255, 255, 1) 75%,
+    //     rgba(255, 255, 255, 1) 100%
+    //   );
+    // }
+
+    .todo-list::-webkit-scrollbar-thumb {
+      background-color: var(--background-light-grey-color);
+      border-radius: 24px;
+      border: unset;
+    }
   }
 
+  .creat-button {
+    min-width: 160px;
+    height: 50px;
+    padding: 0 20px;
+    font-size: 16px;
+    background-color: var(--font-danger-color);
+    color: var(--font-primary-color);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: 0.5s;
+  }
 
-
-
-  // &::-webkit-scrollbar {
-  //   display: none;
-  // }
-}
-
-.todo-list::-webkit-scrollbar {
-  width: 5px;
-}
-
-.todo-list::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-
-.todo-list::-webkit-scrollbar-track-piece {
-  background-color: var(--background-white-color);
-  background: linear-gradient(90deg,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 1) 25%,
-      rgba(228, 228, 228, 1) 50%,
-      rgba(255, 255, 255, 1) 75%,
-      rgba(255, 255, 255, 1) 100%);
-}
-
-.todo-list::-webkit-scrollbar-thumb {
-  background-color: var(--background-light-grey-color);
-  border-radius: 24px;
-  border: unset;
-}
-
-.table tbody th,
-td {
-  padding: 10px;
-  vertical-align: middle;
-  border-bottom: 1px solid var(--border-light-color);
-}
-
-.creat-button {
-  min-width: 160px;
-  height: 50px;
-  padding: 0 20px;
-  font-size: 16px;
-  background-color: var(--font-danger-color);
-  color: var(--font-primary-color);
-  border-radius: 8px;
-  box-shadow: 0 10px 30px 0 rgba(255, 75, 90, .5);
-  -moz-box-shadow: 0 10px 30px 0 rgba(255, 75, 90, .5);
-  transition: 0.5s;
-}
-
-.creat-button:hover {
-  background-color: var(--background-light-black-color);
-  box-shadow: 0 10px 30px 0 rgba(51, 51, 51, .5);
-  -moz-box-shadow: 0 10px 30px 0 rgba(51, 51, 51, .5);
-}
-
-.edit-button {
-  background-color: #f8f9fa;
-  border: 1px solid #f8f9fa;
-  border-radius: 4px;
-  color: #3c4043;
-  letter-spacing: 1px;
-  cursor: pointer;
-  font-family: arial, sans-serif;
-  font-size: 14px;
-  height: 36px;
-  min-width: 80px;
-  padding: 0 16px;
-  text-align: center;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: pre;
-}
-
-.edit-button:hover {
-  border-color: #dadce0;
-  box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
-  color: #202124;
-}
-
-.edit-button:focus {
-  border-color: #4285f4;
-  outline: none;
-}
-
-/* CSS */
-.delete-button {
-  background-image: linear-gradient(#464d55, #25292e);
-  border-radius: 4px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
-  color: #fff;
-  cursor: pointer;
-  font-size: 18px;
-  height: 34px;
-  outline: none;
-  overflow: hidden;
-  padding: 5px 15px;
-  text-align: center;
-  transition: all 150ms;
-}
-
-.delete-button:hover {
-  box-shadow: rgba(0, 1, 0, .2) 0 2px 8px;
-  opacity: .85;
-}
-
-.delete-button:active {
-  outline: 0;
-}
-
-.delete-button:focus {
-  box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
-}
-
-.title-option-box {
-  position: relative;
-}
-
-.list-title {
-  background-color: #545d92;
-  color: #fff;
-}
-
-.list-option-card {
-  background-color: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
-  position: absolute;
-  top: 70px;
-  left: 50%;
-  transform: translateX(-48%);
-  border-radius: 10px;
-  width: 90%;
-}
-
-.todo-list {
-  margin: 0 auto;
-}
-
-.todo-table {
-  border-radius: 15px;
-  background: #fff;
-  overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
+  .creat-button:hover {
+    background-color: var(--background-light-black-color);
+    box-shadow: 0 10px 30px 0 rgba(51, 51, 51, 0.5);
+    -moz-box-shadow: 0 10px 30px 0 rgba(51, 51, 51, 0.5);
+  }
 }
 
 @media (max-width: 420px) {
